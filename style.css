@@ -34,7 +34,9 @@ h6 {
 p {
   text-wrap: pretty;
 }
-
+span {
+  position: relative;
+}
 .container {
   max-width: 768px;
   padding: 4.3rem 1.5rem;
@@ -66,20 +68,23 @@ p {
   font-weight: 600;
 }
 .form {
+  position: relative;
   border-radius: 10px;
   background: white;
   display: flex;
   flex-direction: column;
   padding: 1.5rem;
-  gap: 1rem;
+  gap: 0.75rem;
 }
 .form input {
+  position: relative;
   border-radius: 5px;
   padding: 1rem;
   border: 1px solid hsl(246, 25%, 77%);
   font-weight: 500;
 }
 .form .btn {
+  margin-top: 1rem;
   background-color: hsl(154, 60%, 51%);
   color: white;
   border: 1px solid transparent;
@@ -101,30 +106,70 @@ p {
   font-weight: 700;
 }
 
-@media (min-width: 900px){
+/* ERROR */
+
+.form input.error {
+  border: 1px solid hsl(0, 100%, 74%);
+}
+.form input:focus {
+  outline: none;
+}
+.message {
+  position: relative;
+}
+.message.active::before {
+  position: absolute;
+  right: 1rem;
+  top: 1.8rem;
+  z-index: 1;
+  content: url("./images/icon-error.svg");
+}
+.message.labelName.active::after,
+.message.labelLast.active::after,
+.message.labelEmail.active::after,
+.message.labelPass.active::after {
+  position: absolute;
+  right: 0.5rem;
+  top: 5em;
+  font-size: 14px;
+  font-weight: 500;
+  color: hsl(0, 100%, 74%);
+  z-index: 1;
+}
+.message.labelName.active::after {
+  content: "First Name cannot be empty";
+}
+.message.labelLast.active::after {
+  content: "Last Name cannot be empty";
+}
+.message.labelEmail.active::after{
+  content: "looks like this is not email";
+}
+.message.labelPass.active::after{
+  content: "Password cannot be empty";
+}
+@media (min-width: 900px) {
   body {
     background-image: url("./images/bg-intro-desktop.png");
   }
-  .container{
+  .container {
     max-width: 1200px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    /* padding: 0; */
   }
-  .header{
+  .header {
     text-align: left;
-    /* width: 50%; */
   }
-  .header .title{
+  .header .title {
     font-size: 3.5rem;
     line-height: 1.1;
   }
-  .header .description{
+  .header .description {
     padding-right: 6rem;
   }
-  .card{
+  .card {
     width: 90%;
   }
 }
